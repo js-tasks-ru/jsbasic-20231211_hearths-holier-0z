@@ -1,3 +1,3 @@
 function factorial(n) {
-  // ваш код...
+  return n ? n * factorial(n - 1) : 1;
 }
