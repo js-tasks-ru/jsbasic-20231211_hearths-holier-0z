@@ -8,7 +8,7 @@ export default class StepSlider {
 
     this.thumb.ondragstart = () => false;
 
-    this.elem.addEventListener('pointerdown', this.onPointerDown);
+    this.thumb.addEventListener('pointerdown', this.onPointerDown);
   }
 
   renderSlider() {
@@ -67,7 +67,7 @@ export default class StepSlider {
 
     this.elem.classList.add('slider_dragging');
 
-    this.elem.addEventListener('pointermove', this.onPointerMove);
+    document.addEventListener('pointermove', this.onPointerMove);
     document.addEventListener('pointerup', this.onPointerUp);
   }
 
@@ -94,15 +94,15 @@ export default class StepSlider {
 
       if (value !== this.value) {
         this.setValue(value);
-        this.emitSliderChangeEvent();
       }
     }
   }
 
   onPointerUp = () => {
     this.elem.classList.remove('slider_dragging');
+    this.emitSliderChangeEvent();
 
-    this.elem.removeEventListener('pointermove', this.onPointerMove);
+    document.removeEventListener('pointermove', this.onPointerMove);
     document.removeEventListener('pointerup', this.onPointerUp);
   }
 
